@@ -3,6 +3,7 @@ import socket
 import time
 import sys
 
+github_link: "https://github.com/Sapein/Basic-IRC-Bot"
 def Main():
 	port = 6667
 	host = ""
@@ -55,7 +56,7 @@ def connection(host, port):
 	print("Connected")
 	irc.send(("PASS csircbotpy\r\n").encode('utf-8'))
 	irc.send(("NICK " + nick + '\r\n').encode('utf-8'))
-	irc.send(("USER " + nick + " 0 " + " * " + " :An version of RHSs colon pipe funcationality\r\n").encode('utf-8'))
+	irc.send(("USER " + nick + " 0 " + " * " + " :Chankus IRC Bot\r\n").encode('utf-8'))
 	time.sleep(5)
 	irc.send(("JOIN " + channel + '\r\n').encode('utf-8'))
 	while True:
@@ -66,11 +67,11 @@ def connection(host, port):
 			print(data)
 			response = str(data)
 			response.split()
-			print("PONG", response)
-			irc.send(("PONG " + response + '\r\n').encode('utf-8'))
+			print("PONG", response[1])
+			irc.send(("PONG " + response[1] + '\r\n').encode('utf-8'))
 		elif ":|" in str(data):
 			spData = data.split("!")
-			spData = spData[1].split(":")
+			spData = spData[0].split(":")
 			username = spData[1]
 			irc.send(("PRIVMSG " + channel + " :" + username + ": Colon Pipe!\r\n").encode('utf-8'))
 		elif ".disconnect" in str(data):
@@ -83,7 +84,7 @@ def connection(host, port):
 					"to impliment one behavior of Dark N Edgy's Red Hat Shill bot! " + \
 					"The feature implimented is to respond [user]: Colon Pipe! to " + \
 					"the channel when :| is said (that is colon pipe). I am also " + \
-					"on github at " + github_link + "!\r\n").encode('utf-8')
+					"on github at " + github_link + "!\r\n").encode('utf-8'))
 
 	irc.send(("QUIT :Owner has requested Disconnection from server\r\n").encode('utf-8'))
 	irc.close()
