@@ -3,7 +3,7 @@ import socket
 import time
 import sys
 
-github_link: "https://github.com/Sapein/Basic-IRC-Bot"
+github_link =  "https://github.com/Sapein/Basic-IRC-Bot"
 def Main():
 	port = 6667
 	host = ""
